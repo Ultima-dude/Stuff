@@ -1,0 +1,151 @@
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  overflow: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+button,
+input,
+select {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+/*  main  */
+
+main {
+  background: linear-gradient(#dfdfdd, #ffffff);
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  font-family: Verdana, sans-serif;
+  background-color: #dfdfdd;
+  padding: 0.8rem 0;
+}
+
+/*  figure  */
+
+#img-div {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#image {
+  max-width: 310px;
+  height: 28rem;
+  object-fit: contain;
+}
+
+/*  tribute-info  */
+
+#tribute-info {
+  width: 70%;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0.8rem 1.5rem 0.8rem;
+}
+
+h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+p {
+  margin: 0.5rem 0;
+}
+
+li {
+  margin: 1rem 0 1rem 0.8rem;
+}
+
+.time {
+  font-weight: bold;
+}
+
+/*  footer  */
+
+footer {
+  margin: 2rem 0 1rem;;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+footer::before {
+  content: "";
+  display: block;
+  border-top: 2px solid black;
+  width: 45%;
+  margin: 0 auto 1rem;;
+}
