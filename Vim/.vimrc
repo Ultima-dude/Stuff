@@ -29,6 +29,9 @@ filetype  plugin indent on               "узнает тип файла, под
 :inoremap <down> <nop>
 :inoremap <right> <nop>
 
+"Копировать строку вниз
+:nnoremap <leader>J ^v$y$a<cr><esc>p
+
 "Перемещает строку выше предидущей, не работает с последней строкой
 :nnoremap <leader><up> ddkP
 "Ниже следующей
@@ -43,25 +46,30 @@ filetype  plugin indent on               "узнает тип файла, под
 "Обрамить выделенный текст обратной кавычкой
 :vnoremap <leader>` v`<i`<esc>`>la`<esc>
 
+"Закрываем скобочки
+inoremap {<cr> {<cr>}<esc>kA
+
 "Открывает вимрц для правки
 :nnoremap <leader>erc :80vs $MYVIMRC<cr>
 
 "Применяет правки в вимрц к открытому файлу
 :nnoremap <leader>src :source $MYVIMRC<cr>
 
-"Аббры
-
 "Автокоманды
 "tab h autocmd-events
 
 "HTML автокоманды
-"Доктайп html
 
+"Доктайп html
 :augroup ft_html
 : autocmd!
 : autocmd FileType html :iabbrev <buffer> <!D <!DOCTYPE html><cr><html lang="en"><cr><head><cr><meta charset="utf-8"><cr><meta name="viewport" content="width=device-width, initial-scale=1.0"><cr><meta name="author" content="Ultima"><cr><meta name="description" content=""><cr><link rel="stylesheet" href=""><cr><title></title><cr></head><cr><body><cr></body><cr></html>
 :augroup END
 
+"Автодополнения тегов
+:augroup complete_html
+: autocmd!
+:augroup END
 "Нормализует HTML файлы перед записью, вся фишка в значке =. normal - тип мода
 "в котором это все вбивается перед записью
 :augroup normalize
@@ -79,9 +87,18 @@ filetype  plugin indent on               "узнает тип файла, под
 "JS АВТОКОМАНДЫ
 :augroup ft_js
 : autocmd!
+"Аббр для use strict
+: autocmd FileType javascript :iabbrev <buffer> ustr "use strict"
+
 "Комментим строку в js
 : autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
 
 "If дописываем
-: autocmd FileType javascript :iabbrev <buffer> iff if () {<cr>}<esc>k2ei
+: autocmd FileType javascript :iabbrev <buffer> if if ()<esc>i
+
+"while дописываем
+: autocmd FileType javascript :iabbrev <buffer> while while()<esc>i
+
+"Ну и for можно дописать
+: autocmd FileType javascript :iabbrev <buffer> for( for(;;)<esc>2hi
 :augroup END
