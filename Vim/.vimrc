@@ -1,21 +1,55 @@
 :echo ">^.^<"
 
-:set      tabstop=2                       "Таб - 2пробелла
+"Подрубаю Jslint :SaveAndJsLint
+:source ~/.vim/jslint_wrapper_vim.vim
+
+"Таб - 4пробелла
+:set      tabstop=2
 :set      shiftwidth=2
-:set      smarttab                        "Если строка начинается с таба, то это таб, а не пробеллы
-:set      expandtab                       "Заменяет таб на пробел
-:set      hlsearch                        "Подсветка поиска
-:set      incsearch                       "Поиск во время набора текста
-:set      nowrapscan                      "Поиск не будет заходить на второй круг по файлу
-:syntax   enable                          "Врубает синтаксис
+
+"Если строка начинается с таба, то это таб, а не пробеллы
+:set      smarttab
+
+"Заменяет таб на пробел
+:set      expandtab
+
+"Подсветка поиска
+:set      hlsearch
+
+"Поиск во время набора текста
+:set      incsearch
+
+"Поиск не будет заходить на второй круг по файлу
+:set      nowrapscan
+
+"Врубает синтаксис
+:syntax   enable
 :syntax   on
-packadd!  matchit                         "Грузит плагин при инициализации вим, улучшает поиск %
-:set      textwidth=78                    "Делает невозможным создание строки более 78 символов
-filetype  plugin indent on               "узнает тип файла, подрубает плгин
-:set      list                            "Подрубает невидимые символы
-:set      listchars=tab:>-,trail:-,eol:<  "Меняет отображение таба, следующего пробела, конца линии
-:set      number                          "Отображает омера срок
-:set      relativenumber                  "Показывает номер относительно курсора"
+
+"Грузит плагин при инициализации вим, улучшает поиск %
+packadd!  matchit
+
+"Делает невозможным создание строки более 78 символов
+:set      textwidth=78
+
+"узнает тип файла, подрубает плгин
+filetype  plugin indent on
+
+"Подрубает невидимые символы
+:set      list
+
+"Меняет отображение таба, следующего пробела, конца линии
+:set      listchars=tab:>-,trail:-,eol:<
+
+"Отображает омера срок
+:set      number
+
+"Скрывает содержимое по отступам
+:set foldmethod=indent foldcolumn=2
+
+"
+:hi Folded  ctermbg=232
+:hi FoldColumn ctermbg=232
 
 "Mappings ну или мапы
 ":tab h key-notation - Объяснение как написать кнопки
@@ -23,11 +57,8 @@ filetype  plugin indent on               "узнает тип файла, под
 :let mapleader="-"                        "Префикс для мапов
 :let maplocalleader="\\"                  "Префикс для локальных мапов
 
-"Вырубаем стрелочки в инсерте
-:inoremap <up> <nop>
-:inoremap <left> <nop>
-:inoremap <down> <nop>
-:inoremap <right> <nop>
+"Выделить слово
+:nnoremap <space> viw
 
 "Копировать строку вниз
 :nnoremap <leader>J ^v$y$a<cr><esc>p
@@ -47,7 +78,6 @@ filetype  plugin indent on               "узнает тип файла, под
 :vnoremap <leader>` v`<i`<esc>`>la`<esc>
 
 "Закрываем скобочки
-inoremap {<cr> {<cr>}<esc>kA
 
 "Открывает вимрц для правки
 :nnoremap <leader>erc :80vs $MYVIMRC<cr>
@@ -58,47 +88,59 @@ inoremap {<cr> {<cr>}<esc>kA
 "Автокоманды
 "tab h autocmd-events
 
+"Общие автокоманды
+:augroup common
+: autocmd!
+"При выходе из вима сохрвняет складки и подгружает их при входе в вим
+": autocmd BufWinLeave *.* mkview
+": autocmd BufWinEnter *.* silent loadview
+
+"Скрывает содержимое в вимрц по маркерам
+: autocmd FileType vim setlocal foldmethod=marker
+:augroup END
+
 "HTML автокоманды
 
-"Доктайп html
 :augroup ft_html
 : autocmd!
+"Доктайп html
 : autocmd FileType html :iabbrev <buffer> <!D <!DOCTYPE html><cr><html lang="en"><cr><head><cr><meta charset="utf-8"><cr><meta name="viewport" content="width=device-width, initial-scale=1.0"><cr><meta name="author" content="Ultima"><cr><meta name="description" content=""><cr><link rel="stylesheet" href=""><cr><title></title><cr></head><cr><body><cr></body><cr></html>
+
+"Вставить тег скрипта
+: autocmd FileType html :nnoremap <buffer> <localleader>s o<script src=""></script><esc>bbla
 :augroup END
 
 "Автодополнения тегов
 :augroup complete_html
 : autocmd!
 :augroup END
-"Нормализует HTML файлы перед записью, вся фишка в значке =. normal - тип мода
+"Нормализует буфер перед записью, вся фишка в значке =. normal - тип мода
 "в котором это все вбивается перед записью
 :augroup normalize
 : autocmd!
+: autocmd BufWritePre *.js :normal gg=G
 : autocmd BufWritePre *.html :normal gg=G
+: autocmd BufWritePre *.css :normal gg=G
 :augroup END
 
 "CSS Автокоманды
 :augroup ft_css
 : autocmd!
-"Дополнение скобочки, стартануть с одной скобочкой { не могу... пока
-: autocmd FileType css :iabbrev <buffer> {} {<cr>}<esc>O
 :augroup END
 
 "JS АВТОКОМАНДЫ
 :augroup ft_js
 : autocmd!
+
+"В js файлах табы по 4 пробела
+: autocmd FileType javascript setlocal tabstop=4 shiftwidth=4
+
 "Аббр для use strict
-: autocmd FileType javascript :iabbrev <buffer> ustr "use strict"
+: autocmd FileType javascript :iabbrev <buffer> ustr "use strict";
 
 "Комментим строку в js
 : autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
 
-"If дописываем
-: autocmd FileType javascript :iabbrev <buffer> if if ()<esc>i
-
-"while дописываем
-: autocmd FileType javascript :iabbrev <buffer> while while()<esc>i
-
-"Ну и for можно дописать
-: autocmd FileType javascript :iabbrev <buffer> for( for(;;)<esc>2hi
+"Комментируем выделенный кусок
+: autocmd FileType javascript vnoremap <buffer> <localleader>c v`<O/*<esc>`>o*/<esc>
 :augroup END
