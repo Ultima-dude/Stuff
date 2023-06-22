@@ -1,16 +1,16 @@
 "use strict"
 
 function gen(a = 0, b = 1) {
-  return function () {
-    a += b;
-    return a - b;
-  }
+    return function () {
+        a += b;
+        return a - b;
+    }
 }
 
 function fmap(a, gen) {
-  return function (...args) {
-    return a(gen(...args));
-  }
+    return function () {
+        return a(gen.apply(this, arguments));
+    }
 }
 
 let generator = gen(1, 1);
@@ -21,7 +21,7 @@ console.log(res());
 console.log(res());
 
 function add(a, b) {
-  return a + b;
+    return a + b;
 }
 
 let doubleAdd = fmap(a => a * 2, add);

@@ -1,0 +1,109 @@
+/* General Styles */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Lato', sans-serif;
+} 
+
+body {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100vh;
+	text-align: center;
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#add-task-container {
+	width: 350px;
+	padding: 20px 10px;
+	background: #fff;
+	border-radius: 20px;
+	box-shadow: 0 0 3px;
+
+	display: flex;
+}
+
+input {
+	flex: 5;
+	margin-right: 10px;
+	border-radius: 10px;
+	font-size: 1.2rem;
+	padding: 5px;
+}
+
+#add-task {
+	flex: 1;
+
+	font-size: 1.2rem;
+	padding: 5px;
+	background: #fff;
+	color: green;
+
+	border: green solid 2px;
+	border-radius: 10px;
+
+	transition: .3s;
+}
+
+#add-task:hover {
+	background: green;
+	color: #fff;
+}
+
+.task {
+	width: 100%;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 3px;
+
+	padding: 5px;
+	margin-bottom: 5px;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+.task li {
+	list-style: none;
+	flex: 4;
+	padding: 5px;
+	margin: 10px;
+}
+
+.task button {
+	flex: 1;
+	boder-radius: 10px;
+	background-color: #fff;
+}
+
+.task .check-task {
+	color: orange;
+	margin-right: 5px;
+	border: solid 5px orange;
+	font-size: 1.5rem;
+}
+
+.task .delete-task {
+	color: red;
+	margin-right: 5px;
+	border: solid 5px red;
+	font-size: 1.5rem;
+}

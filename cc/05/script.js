@@ -1,36 +1,43 @@
-"use strict"
+"use strict";
 
-function partial(fn, ...fixedArgs) {
-  return function(...args) {
-    return fn(...fixedArgs, ...args);
-  }
+function partialAny(fn) {
+    let args = [];
+    for(let key in arguments)
+        if(+key)
+            args.push(arguments[key]);
+
+    return function() {
+        let wrapperArgs = [];
+        for(let key in arguments)
+            wrapperArgs.push(arguments[key]);
+        return fn.apply(this, replaceEmptyValues(args, wrapperArgs));
+    }
+}
+
+function replaceEmptyValues(arr1, arr2) {
+    let arr = [];
+    arr = arr.concat(arr1);
+    let j = 0;
+    for(let i = 0; i < arr.length; i++) {
+        if(typeof(arr[i]) == 'undefined') {
+            arr[i] = arr2[j];
+            j++;
+        }
+    }
+
+    while(j < arr2.length) {
+        arr.push(arr2[j]);
+        j++
+    }
+
+    return arr;
 }
 
 function add(a, b) {
-  return a + b;
+    return a + b;
 }
 
-function multiply(a, b, c, d) {
-  return a * b * c * d;
-}
+let add1 = partialAny(add, undefined, 3);
 
-let add1 = partial(add, 2, 3);
-let add2 = partial(add, 3);
 
-function partialAny(fn, ...fixedArgs) {
-  return function(...args) {
-    let finalArgs = fixedArgs.map(item => {
-      if (!item)
-        return args.shift();
-      return item;
-    });
-    return fn(...finalArgs);
-  }
-}
-
-function test(a, b, c) {
-  return 'a=' + a + ',b=' + b + ',c= '+ c;
-}
-
-let test1 = partialAny(test, 1, undefined, 3);
-console.log(test1(5));
+console.log(add1(2));

@@ -1,0 +1,30 @@
+.popup {
+    margin: 5px;
+    position: fixed;
+    padding: 4px;
+    border: 2px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 2px 3px black;
+}
+
+.popupQuestion {
+  position: fixed;
+  right: 37vw;
+  top: 30vh;
+  padding: 10px;
+  width: 25vw;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: 1px 2px 3px black;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 10px;
+}
+
+.closeBtn:hover {
+  color: red;
+  cursor: pointer;
+}

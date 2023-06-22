@@ -1,0 +1,13 @@
+body {
+    height: 400vh;
+}
+
+.elem {
+    width: 80vw;
+    height: 10vh;
+    background-color: blue;
+    margin: auto;
+
+    position: relative;
+    top: 270vh;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="Ultima">
+		<meta name="description" content="">
+		<link rel="stylesheet" href="">
+		<title></title>
+	</head>
+	<body>
+		<div id="elem">
+			<div id="elem-content">
+				Element
+			</div>
+		</div>
+		<script>
+			let elem = document.getElementById('elem');
+
+elem.style.background = 'red';
+window['elem-content'].style.background = "green";
+		</script>
+		<ul>
+			<li>test</li>
+			<li>test1</li>
+		</ul>
+		<ul>
+			<li>test3</li>
+			<li>test4</li>
+		</ul>
+		<script>
+			let elements = document.querySelectorAll('ul > li:last-child');
+
+for(let elem of elements) {
+	alert(elem.innerHTML);
+}
+		</script>
+	</body>
+</html>

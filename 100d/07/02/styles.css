@@ -1,0 +1,8 @@
+#elem {
+    width: 100px;
+    font-size: 20px;
+    height: 100px;
+    background-color: rosybrown;
+    border: 2px solid black;
+    overflow: auto;
+}
