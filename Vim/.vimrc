@@ -1,20 +1,19 @@
 :echo ">^.^<"
 
-"Подрубаю Jslint :SaveAndJsLint
-:source ~/.vim/jslint_wrapper_vim.vim
-
+" базовые сеты {{{
 "Таб - 4пробелла
 :set      tabstop=2
 :set      shiftwidth=2
+:set      softtabstop=2
 
 "Если строка начинается с таба, то это таб, а не пробеллы
-:set      smarttab
+":set      smarttab
 
 "Заменяет таб на пробел
-:set      expandtab
+":set      expandtab
 
-"Подсветка поиска
-:set      hlsearch
+"Подсветка поиска отключить
+:set      nohlsearch
 
 "Поиск во время набора текста
 :set      incsearch
@@ -32,26 +31,28 @@ packadd!  matchit
 "Делает невозможным создание строки более 78 символов
 :set      textwidth=78
 
-"узнает тип файла, подрубает плгин
-filetype  plugin indent on
-
 "Подрубает невидимые символы
-:set      list
+":set      list
 
 "Меняет отображение таба, следующего пробела, конца линии
-:set      listchars=tab:>-,trail:-,eol:<
+:set      listchars=trail:-,eol:<
 
 "Отображает омера срок
 :set      number
+:set			relativenumber
 
 "Скрывает содержимое по отступам
 :set foldmethod=indent foldcolumn=2
 
-"
+"Подсветка складок
 :hi Folded  ctermbg=232
 :hi FoldColumn ctermbg=232
 
-"Mappings ну или мапы
+"Подрубает плагины, отступы в зависимости от типа файлов
+filetype plugin indent on
+"}}}
+
+"Mappings ну или мапы {{{
 ":tab h key-notation - Объяснение как написать кнопки
 
 :let mapleader="-"                        "Префикс для мапов
@@ -60,10 +61,8 @@ filetype  plugin indent on
 "Выделить слово
 :nnoremap <space> viw
 
-"Копировать строку вниз
-:nnoremap <leader>J ^v$y$a<cr><esc>p
-
 "Перемещает строку выше предидущей, не работает с последней строкой
+"Надо переделать под блок выделенного текста
 :nnoremap <leader><up> ddkP
 "Ниже следующей
 :nnoremap <leader><down> ddp
@@ -77,15 +76,14 @@ filetype  plugin indent on
 "Обрамить выделенный текст обратной кавычкой
 :vnoremap <leader>` v`<i`<esc>`>la`<esc>
 
-"Закрываем скобочки
-
 "Открывает вимрц для правки
 :nnoremap <leader>erc :80vs $MYVIMRC<cr>
 
 "Применяет правки в вимрц к открытому файлу
 :nnoremap <leader>src :source $MYVIMRC<cr>
+"}}}
 
-"Автокоманды
+"Автокоманды {{{
 "tab h autocmd-events
 
 "Общие автокоманды
@@ -106,26 +104,31 @@ filetype  plugin indent on
 "Доктайп html
 : autocmd FileType html :iabbrev <buffer> <!D <!DOCTYPE html><cr><html lang="en"><cr><head><cr><meta charset="utf-8"><cr><meta name="viewport" content="width=device-width, initial-scale=1.0"><cr><meta name="author" content="Ultima"><cr><meta name="description" content=""><cr><link rel="stylesheet" href=""><cr><title></title><cr></head><cr><body><cr></body><cr></html>
 
-"Вставить тег скрипта
-: autocmd FileType html :nnoremap <buffer> <localleader>s o<script src=""></script><esc>bbla
+: autocmd FileType html :nnoremap <buffer> <localleader>s o<script src="@"></script><esc>?@<cr>s
+
+"Добиваем теги пока только добивает тег на новой строке и заменяет только . на
+"class
+:	autocmd FileType html :nnoremap <buffer> <localleader>t :s/<\([a-z1-9]*\)\.\([a-z-]*\)/<\1 class="\2"><\/\1>/<cr>
 :augroup END
 
-"Автодополнения тегов
-:augroup complete_html
-: autocmd!
-:augroup END
+
 "Нормализует буфер перед записью, вся фишка в значке =. normal - тип мода
 "в котором это все вбивается перед записью
-:augroup normalize
+:augroup lint 
 : autocmd!
-: autocmd BufWritePre *.js :normal gg=G
-: autocmd BufWritePre *.html :normal gg=G
-: autocmd BufWritePre *.css :normal gg=G
+: autocmd BufWritePre,BufRead *.js :normal gg=G
+: autocmd BufWritePre,BufRead *.html :normal gg=G
+: autocmd BufWritePre,BufRead *.css :normal gg=G
+
+"Коммент
+:	autocmd FileType html :vnoremap <buffer><localleader>c v`<O<!--<esc>`>o--><esc>
 :augroup END
 
 "CSS Автокоманды
 :augroup ft_css
 : autocmd!
+"Коммент
+:	autocmd FileType css :nnoremap <buffer> <localleader>c I/*<C-o>$*/<esc>
 :augroup END
 
 "JS АВТОКОМАНДЫ
@@ -133,14 +136,28 @@ filetype  plugin indent on
 : autocmd!
 
 "В js файлах табы по 4 пробела
-: autocmd FileType javascript setlocal tabstop=4 shiftwidth=4
+: autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
 "Аббр для use strict
 : autocmd FileType javascript :iabbrev <buffer> ustr "use strict";
 
+"for abbr
+: autocmd FileType javascript :iab <buffer> forii@ for(let i = 0; i < @; i++) {<cr>}<esc>?@<cr>s
+
+"class abbr
+: autocmd FileType javascript :iab <buffer> class@ class <esc>mci{<cr>}<esc>Oconstructor() {<cr>}<esc>`ci
+
+"try
+: autocmd FileType javascript vnoremap <buffer> <localleader>t v`<Otry {<C-o>`><cr>} catch(@) {<cr>}<esc>?@<cr>s
 "Комментим строку в js
 : autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
 
+"Раскоментим строку
+: autocmd FileType javascript nnoremap <buffer> <localleader>u 0ebxx
+
 "Комментируем выделенный кусок
 : autocmd FileType javascript vnoremap <buffer> <localleader>c v`<O/*<esc>`>o*/<esc>
+"Раскоментим выделенный кусок
+: autocmd FileType javascript vnoremap <buffer> <localleader>u v`<xx`>xx
 :augroup END
+"}}}
