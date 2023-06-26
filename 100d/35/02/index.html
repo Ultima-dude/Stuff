@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ultima">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="">
+    <script src="script.js"></script>
+    <title>input</title>
+  </head>
+  <body>
+      <input type="text" id="input"> oninput: <span id="result"></span>
+      <script>
+          input.oninput = function() {
+              result.innerHTML = input.value;
+          };
+      </script>
+  </body>
+</html>
