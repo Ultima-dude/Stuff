@@ -26,7 +26,7 @@ const directions = {
 mouse.setAttribute("tabindex", '1');
 mouse.style.position = 'absolute';
 
-mouse.addEventListener('focus', function(event) {
+mouse.addEventListener('focus', function() {
   this.addEventListener('keydown', directMouse);
 });
 

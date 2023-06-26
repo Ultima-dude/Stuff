@@ -8,6 +8,7 @@ require'nvim-jest'.setup {
   silent = true,
 }
 
+vim.keymap.set("n", "<leader>J", vim.cmd.JestFile);
 --      Description
 --      :Jest   Run Jest on entire project
 --      :JestFile 	Run Jest on file in current buffer
