@@ -28,3 +28,12 @@ end)
 
 --Включает автозамену слов под курсором
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+--Очень криво пастит скелет доктайпа
+vim.keymap.set("n", "<leader>pdt", ":r ~/nvim/html_skeleton/index.html<cr>")
+
+--Включить игрулю. Обязательно в путом файле!
+vim.keymap.set("n", "<leader>vbg", ":VimBeGood<cr>")
+
+--Выделить слово под курсором
+vim.keymap.set("n", "<Space>", "viw")

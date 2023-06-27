@@ -20,6 +20,8 @@ return require('packer').startup(function(use)
         end
     })
 
+    use { "catppuccin/nvim", as = "catppuccin" }
+
     use({
         "folke/trouble.nvim",
         config = function()
@@ -45,6 +47,9 @@ return require('packer').startup(function(use)
     use("mbbill/undotree")
     use("tpope/vim-fugitive")
     use('mattkubej/jest.nvim')
+
+    --Игруля для парктики перемещения, поиска и редактирования в виме
+    use('ThePrimeagen/vim-be-good')
 
     use {
         'VonHeikemen/lsp-zero.nvim',
