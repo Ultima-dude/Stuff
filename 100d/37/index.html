@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ultima">
+    <title>DOMContentLoaded</title>
+  </head>
+  <body>
+      <script>
+          function ready() {
+              alert('DOM готов');
+              alert(`Размер изображения: ${img.offsetWidth}x${img.offsetHeight}`);
+          }
+
+          
+          document.addEventListener('DOMContentLoaded', ready);
+      </script>
+      <img src='https://en.js.cx/clipart/train.gif?speed=1&cache=0' id="img">
+  </body>
+</html>
