@@ -1,0 +1,24 @@
+body {
+    font-family: sans-serif;
+    color: #585250;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 50px;
+    max-width: 700px;
+    margin: auto;
+}
+
+.accordion-header {
+    background-color: #efefef;
+}
+
+.accordion-content {
+    background-color: red;
+}

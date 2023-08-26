@@ -2,7 +2,9 @@
 
 const foo = {
     a: {
-        foo: "test",
+        foo: {
+            a: "test"
+        },
         bar: "tets",
     },
 
@@ -21,6 +23,7 @@ function copyObj(obj) {
     const buf = new Object();
 
     for(let key in obj) {
+        if(!isEmpty(obj[key])) copyObj(obj[key]);
         buf[key] = obj[key];
     }
 
@@ -38,5 +41,6 @@ const bar = copyObj(foo);
 
 console.log(bar);
 //console.log(baz);
+console.log(foo.a == bar.a);
 console.log(foo == bar);
 //console.log(foo == baz);

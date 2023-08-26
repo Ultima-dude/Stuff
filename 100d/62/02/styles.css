@@ -1,0 +1,118 @@
+:root {
+  --body-bg-color: #72ecca;
+  --opts-bg-color: rgba(0, 0, 0, 0.125);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: var(--body-bg-color);
+}
+
+/* header */
+
+.options-container {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--opts-bg-color);
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.options-container form {
+  display: none;
+}
+
+.options-container.active form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* main */
+
+h1 {
+  font-size: 26px;
+  color: #fff;
+  text-align: center;
+  margin-top: 25px;
+}
+
+#main-container {
+  position: relative;
+  margin: 50px auto;
+  width: 60%;
+  min-height: 40px;
+}
+
+#main-container .main-container-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+#main-container .main-container-show-btn {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+#main-container .container {
+  display: none;
+}
+
+#main-container.show .container {
+  display: initial;
+}
+
+.tag {
+  position: relative;
+  display: inline-block;
+  margin-left: 30px;
+}
+
+.fav-tag {
+  position: absolute;
+  top: 0;
+  left: -20px;
+}
+
+.fav-tag svg:hover {
+  fill: red;
+}
+
+.fav-tag.active svg {
+  fill: red;
+}
+
+.fav-tag.active svg:hover {
+  fill: none;
+}
+
+.preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}

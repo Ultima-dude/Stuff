@@ -1,0 +1,96 @@
+body {
+  max-width: 100vw;
+  min-height: 100vh;
+  background-color: #41b1b7;
+}
+
+/* Tags */
+
+.tag-container {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tags-list {
+  width: clamp(120px, 50vw, 360px);
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  gap: 5px;
+}
+
+.tags-list:not(.show) {
+  display: none;
+}
+
+.tags-list li {
+  flex: 1 1 0;
+  background-color: rgba(79, 16, 219, 0.3);
+  height: 100%;
+  text-align: center;
+  font-size: 17px;
+}
+
+.tags-list .tag-category > .category-list {
+  list-style: none;
+  padding: 0;
+  color: #fff;
+  display: none;
+}
+
+.tags-list .tag-category:hover > .category-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.tags-list .tag-category > .category-list li {
+  text-align: left;
+  padding: 5px 10px;
+  border: 2px solid #254446;
+  border-top: none;
+  background: linear-gradient(35deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+}
+
+.tags-list .tag-category > .category-list li:hover {
+  box-shadow: inset 0 0 10px #fff;
+}
+
+.tags-list .tag-category > .category-list .marked {
+  background-color: #bd5353;
+}
+
+/* Options */
+
+.options-container {
+  display: none;
+}
+
+/* Waifu container */
+.container {
+  position: relative;
+  width: 100vw;
+  height: 90vh;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.waifu-container {
+  max-width: 100%;
+  max-height: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.waifu {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}

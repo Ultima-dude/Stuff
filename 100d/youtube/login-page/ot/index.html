@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="box signIn">
+        <h2>Already have an account?</h2>
+        <button class="signInBtn">Sign in</button>
+      </div>
+      <div class="box signUp">
+        <h2>Dont have an account?</h2>
+        <button class="signUpBtn">Sign up</button>
+      </div>
+      <div class="formBx">
+        <div class="form sign-in-form">
+          <form>
+            <h3>Login form</h3>
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <input type="submit" value="login">
+            <a href="#" class="forgot">Forgot password?</a>
+          </form>
+        </div>
+        <div class="form sign-up-form">
+          <form>
+            <h3>Sign up form</h3>
+            <input type="text" placeholder="Username">
+            <input type="text" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <input type="password" placeholder="Confirm">
+            <input type="submit" value="register">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const signUpBtn = document.querySelector('.signUpBtn');
+      const signInBtn = document.querySelector('.signInBtn');
+
+      signUpBtn.addEventListener('click', () => document.body.classList.add('slide'));
+      signInBtn.addEventListener('click', () => document.body.classList.remove('slide'));
+    </script>
+  </body>
+</html>
